@@ -1,35 +1,27 @@
 #include <QCoreApplication>
 #include <QDebug>
-#include <algorithm>
 
-void printVector(int v[], int tam){
-    int *p = v;
-    for(int i = 0; i< tam; i++){
-        qDebug() << *p;
-        p++;
-    }
-}
+#define INCREMENTA(arg) arg++;
 
-bool comparacion(int a, int b){
-    return a<b;
-}
+#define IMPRIME_HOLA qDebug() << "Hola";
+
+#define INCREMENTA3(a,b,c) a++; b++; c++;
+
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    int v[] = {1,-2,3,-4,5,-6};
+    int num = 0;
+    int x=0,y=1,z=2;
 
-    int *pInicio = v;
-    int *pFin = v + sizeof(v)/sizeof(int);
+    INCREMENTA(num)
+    IMPRIME_HOLA;
+    INCREMENTA3(x,y,z)
 
-    printVector(v, sizeof(v)/sizeof(int));
-
-    qDebug() << "\n------------------------- \n";
-
-    std::sort(pInicio, pFin, comparacion);
-
-    printVector(v, sizeof(v)/sizeof(int));
+    qDebug() << x;
+    qDebug() << y;
+    qDebug() << z;
 
     return a.exec();
 }
