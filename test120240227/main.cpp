@@ -14,7 +14,6 @@ bool comparacion(int a, int b){
     return a<b;
 }
 
-
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -24,6 +23,9 @@ int main(int argc, char *argv[])
     int *pInicio = v;
     int *pFin = v + sizeof(v)/sizeof(int);
 
+    printVector(v, sizeof(v)/sizeof(int));
+
+    qDebug() << "\n------------------------- \n";
 
     std::sort(pInicio, pFin, comparacion);
 
