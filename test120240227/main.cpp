@@ -5,8 +5,10 @@
 
 #define IMPRIME_HOLA qDebug() << "Hola";
 
-#define INCREMENTA3(a,b,c) a++; b++; c++;
-
+#define INCREMENTA3(a,b,c)\
+    a++;\
+    b++;\
+    c++;\
 
 int main(int argc, char *argv[])
 {
@@ -17,7 +19,6 @@ int main(int argc, char *argv[])
 
     INCREMENTA(num)
     IMPRIME_HOLA;
-    INCREMENTA3(x,y,z)
 
     qDebug() << x;
     qDebug() << y;
