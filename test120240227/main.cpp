@@ -6,14 +6,14 @@ enum enumArray{
     INVERSO,
 };
 
-void printArray(int v[], int tam, int forma){
+void printArray(int v[], int tam, enumArray forma){
     int *p = v;
     if(forma == NORMAL){
         for(int i=0; i < tam; i++){
             qDebug() << *(p+i);
         }
     }else if(forma == INVERSO) {
-        for(int i=tam-1; i > -1 ; i--){
+        for(int i=tam-1; i >= 0 ; i--){
             qDebug() << *(p+i);
         }
     }
