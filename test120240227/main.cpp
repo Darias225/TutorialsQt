@@ -1,28 +1,31 @@
 #include <QCoreApplication>
 #include <QDebug>
 
-#define INCREMENTA(arg) arg++;
+enum enumArray{
+    NORMAL,
+    INVERSO,
+};
 
-#define IMPRIME_HOLA qDebug() << "Hola";
-
-#define INCREMENTA3(a,b,c)\
-    a++;\
-    b++;\
-    c++;\
+void printArray(int v[], int tam, int forma){
+    int *p = v;
+    if(forma == NORMAL){
+        for(int i=0; i < tam; i++){
+            qDebug() << *(p+i);
+        }
+    }else if(forma == INVERSO) {
+        for(int i=tam-1; i > -1 ; i--){
+            qDebug() << *(p+i);
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    int num = 0;
-    int x=0,y=1,z=2;
+    int v[] ={1,2,3,4,5};
 
-    INCREMENTA(num)
-    IMPRIME_HOLA;
-
-    qDebug() << x;
-    qDebug() << y;
-    qDebug() << z;
+    printArray(v,5,INVERSO);
 
     return a.exec();
 }
