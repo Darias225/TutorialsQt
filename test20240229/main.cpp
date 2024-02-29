@@ -1,52 +1,72 @@
 #include <QCoreApplication>
 
-class Punto2D
+class Persona
 {
-public:
-    double x,y;
-    Punto2D() {
-        x = 0;
-        y = 0;
-    }
-    Punto2D(double x, double y) {
-        this->x = x;
-        this->y = y;
-    }
-    ~Punto2D(){
-        qDebug() << "Deleted point ( " << x <<", " << y << " )";
-    }
+    static int idAct;
+protected:
+    int id;
+    QString name;
 
-    void printPoint(){
-        qDebug() << "( " << x <<", " << y << " )";
+public:
+    Persona() {
+        idAct++;
+        id = idAct;
+        name = "";
     }
+    Persona(const QString &name) {
+        idAct++;
+        id = idAct;
+        this->name = name;
+        qDebug() <<"Creando Persona :" <<id;
+    }
+    ~Persona(){
+        qDebug() <<"Deleted Persona :" <<id;
+    }
+    virtual void printPersona() const = 0;
 
 };
 
-Punto2D operator+(const Punto2D & p1, const Punto2D & p2){
-    return Punto2D(p1.x+p2.y,p1.y+p2.y);
-}
-Punto2D operator-(Punto2D p1, Punto2D p2){
-    return Punto2D(p1.x-p2.y,p1.y-p2.y);
-}
-Punto2D operator*(Punto2D p1, Punto2D p2){
-    return Punto2D(p1.x*p2.y,p1.y*p2.y);
-}
-Punto2D operator/(const Punto2D &p1,const Punto2D & p2){
-    return Punto2D(p1.x/p2.y,p1.y/p2.y);
-}
+int Persona::idAct = 0;
+
+class Empleado : Persona
+{
+public:
+    Empleado() {
+                this->name = name;
+    }
+    ~Empleado() {
+        qDebug() <<"Deleted Empleado :" <<id;
+    }
+
+    void printPersona() const override{
+        qDebug() <<"Empeado : " << name <<" ";
+    }
+
+};
+class Jefe : Persona
+{
+public:
+    Jefe() {
+    }
+    Jefe(const QString &name) {
+        this->name = name;
+    }
+    ~Jefe(){
+        qDebug() <<"Deleted Empleado :" <<id;
+    }
+
+    void printPersona() const override{
+        qDebug() <<"Jefe : " << name <<" ";
+    }
+};
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Punto2D *p1 = new Punto2D(1,2);
-    Punto2D *p2 = new Punto2D(3,4);
+    Jefe *jefe1 = new Jefe("ffff");
 
-
-    *p1+*p2;
-
-    delete p1;
-    delete p2;
+    jefe1->printPersona();
 
     return a.exec();
 }
