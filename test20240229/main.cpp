@@ -19,31 +19,38 @@ public:
         this->name = name;
         qDebug() <<"Creando Persona :" <<id;
     }
-    ~Persona(){
+    virtual ~Persona(){
         qDebug() <<"Deleted Persona :" <<id;
     }
-    virtual void printPersona() const = 0;
 
+    virtual void printPersona() const = 0;
 };
+
+void Persona::printPersona() const{
+    qDebug() <<"Persona :" <<id << " name : " <<name ;
+}
 
 int Persona::idAct = 0;
 
-class Empleado : Persona
+class Empleado : public Persona
 {
 public:
     Empleado() {
-                this->name = name;
+                this->name = "";
+    }
+    Empleado(QString name) {
+        this->name = name;
     }
     ~Empleado() {
         qDebug() <<"Deleted Empleado :" <<id;
     }
 
     void printPersona() const override{
-        qDebug() <<"Empeado : " << name <<" ";
+        qDebug()<<"ID : " << id <<" " <<"Empleado : " << name ;
     }
 
 };
-class Jefe : Persona
+class Jefe : public Persona
 {
 public:
     Jefe() {
@@ -56,7 +63,7 @@ public:
     }
 
     void printPersona() const override{
-        qDebug() <<"Jefe : " << name <<" ";
+        qDebug()<<"ID : " << id <<" " <<"Jefe : " << name ;
     }
 };
 
@@ -64,9 +71,22 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Jefe *jefe1 = new Jefe("ffff");
+    Persona *persona1 = new Jefe("Dani");
 
+    Jefe *jefe1 = new Jefe("Dani2");
+    Empleado *empleado1 = new Empleado("Dani3");
+    Jefe *jefe2 = new Jefe("Dani4");
+
+    persona1->printPersona();
     jefe1->printPersona();
+    empleado1->printPersona();
+    jefe2->printPersona();
+
+    delete jefe1;
+    delete jefe2;
+    delete empleado1;
+    delete persona1;
+
 
     return a.exec();
 }
